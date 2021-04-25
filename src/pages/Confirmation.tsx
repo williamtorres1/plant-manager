@@ -1,15 +1,16 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
-import { Button } from '../components/Button'
+import { Button } from '../components/Button';
 
-export function Confirmation() {
+export function Confirmation(): JSX.Element {
+  const navigation = useNavigation();
+  function handleMoveOn() {
+    navigation.navigate('PlantSelect');
+  }
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -17,18 +18,16 @@ export function Confirmation() {
 
         <Text style={styles.title}>Prontinho</Text>
 
-        <Text style={styles.subtitle} >
+        <Text style={styles.subtitle}>
           Agora vamos começar a cuidar das suas plantinhas com muito cuidado.
         </Text>
 
         <View style={styles.footer}>
-          <Button text="Confirmar" />
+          <Button text="Confirmar" onPress={handleMoveOn} />
         </View>
       </View>
-
-
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    padding: 30
+    padding: 30,
   },
   title: {
     fontFamily: fonts.heading,
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 17,
     // paddingHorizontal: 10,
-    color: colors.heading
+    color: colors.heading,
   },
   emoji: {
     fontSize: 78,
@@ -67,4 +66,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     marginTop: 20,
   },
-})
+});

@@ -11,37 +11,34 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-
+import { Button } from '../components/Button';
 
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
-import { Button } from '../components/Button';
-
-export function UserIdentification() {
-  const navigation = useNavigation()
+export function UserIdentification(): JSX.Element {
+  const navigation = useNavigation();
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
   const [name, setName] = useState<string>();
 
   function handleInputBlur() {
-    setIsFocused(false)
-    setIsFilled(!!name)
+    setIsFocused(false);
+    setIsFilled(!!name);
   }
 
   function handleInputFocus() {
-    setIsFocused(true)
+    setIsFocused(true);
   }
 
   function handleInputChange(value: string) {
-    setIsFilled(!!value)
-    setName(value)
+    setIsFilled(!!value);
+    setName(value);
   }
   function handleSubmit() {
-    navigation.navigate('Confirmation')
+    navigation.navigate('Confirmation');
   }
-
 
   return (
     <View style={styles.container}>
@@ -54,13 +51,14 @@ export function UserIdentification() {
             <View style={styles.form}>
               <View style={styles.header}>
                 <Text style={styles.emoji}>{isFilled ? '😄' : '😃'}</Text>
-                <Text style={styles.title}>Como podemos {'\n'}chamar você?</Text>
-
+                <Text style={styles.title}>
+                  Como podemos {'\n'}chamar você?
+                </Text>
               </View>
               <TextInput
                 style={[
                   styles.input,
-                  (isFocused || isFilled) && { borderColor: colors.green }
+                  (isFocused || isFilled) && { borderColor: colors.green },
                 ]}
                 placeholder="Digite um nome"
                 onBlur={handleInputBlur}
@@ -73,11 +71,9 @@ export function UserIdentification() {
             </View>
           </View>
         </TouchableWithoutFeedback>
-
       </KeyboardAvoidingView>
-
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -85,23 +81,23 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   content: {
     flex: 1,
-    width: '100%'
+    width: '100%',
   },
   form: {
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 54,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   header: {
-    alignItems: 'center'
+    alignItems: 'center',
   },
   emoji: {
-    fontSize: 44
+    fontSize: 44,
   },
   title: {
     fontFamily: fonts.heading,
@@ -119,11 +115,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
     padding: 10,
     textAlign: 'center',
-    width: '100%'
+    width: '100%',
   },
   footer: {
     width: '100%',
     paddingHorizontal: 20,
     marginTop: 40,
   },
-})
+});
