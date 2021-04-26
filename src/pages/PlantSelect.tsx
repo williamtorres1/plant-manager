@@ -6,6 +6,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
 import { Header } from '../components/Header';
 import { EnvironmentButton } from '../components/EnvironmentButton';
@@ -17,35 +18,26 @@ import fonts from '../../styles/fonts';
 
 import api from '../services/api';
 
+import { PlantProps } from '../libs/storage';
+
 interface EnvironmentProps {
   key: string;
   title: string;
 }
 
-interface PlantProps {
-  id: string;
-  name: string;
-  about: string;
-  water_tips: string;
-  photo: string;
-  environments: string[];
-  frequency: {
-    times: number;
-    repeat_every: string;
-  };
-}
-
 export function PlantSelect(): JSX.Element {
+  const navigation = useNavigation();
+
   const [environments, setEnvironments] = useState<EnvironmentProps[]>();
   const [environmentSelected, setEnvironmentSelected] = useState('all');
-  const [plants, setPlants] = useState<PlantProps[]>([]);
+  const [plants, setPlants] = useState<PlantPropsrops[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
   const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
 
-  async function fetchPlants() {
+  async function fetchPlants(): Promise<void> {
     const { data } = await api.get(
       `plants?_sort=name&_order=asc&_page=${page}&_limit=8`,
     );
@@ -101,6 +93,10 @@ export function PlantSelect(): JSX.Element {
     fetchPlants();
   }, []);
 
+  function handlePlantSelect(plant: PlantProps) {
+    navigation.navigate('PlantSave', { plant });
+  }
+
   if (loading) {
     return <Load />;
   }
@@ -118,6 +114,7 @@ export function PlantSelect(): JSX.Element {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.environmentList}
           data={environments}
+          keyExtractor={item => String(item.key)}
           renderItem={({ item }) => (
             <EnvironmentButton
               title={item.title}
@@ -140,7 +137,13 @@ export function PlantSelect(): JSX.Element {
             loadingMore ? <ActivityIndicator color={colors.green} /> : <View />
           }
           data={filteredPlants}
-          renderItem={({ item }) => <PlantCardPrimary data={item} />}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <PlantCardPrimary
+              data={item}
+              onPress={() => handlePlantSelect(item)}
+            />
+          )}
         />
       </View>
     </View>
