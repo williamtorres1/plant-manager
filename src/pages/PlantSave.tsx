@@ -7,6 +7,7 @@ import {
   Image,
   Platform,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { SvgFromUri } from 'react-native-svg';
@@ -17,8 +18,8 @@ import { format, isBefore } from 'date-fns';
 import { Button } from '../components/Button';
 
 import colors from '../../styles/colors';
-import waterDrop from '../assets/waterdrop.png';
 import fonts from '../../styles/fonts';
+import waterDrop from '../assets/waterdrop.png';
 
 import { PlantProps, savePlant } from '../libs/storage';
 
@@ -72,7 +73,10 @@ export function PlantSave(): JSX.Element {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}
+    >
       <View style={styles.plantInfo}>
         <SvgFromUri uri={plant.photo} height={150} width={150} />
 
@@ -111,7 +115,7 @@ export function PlantSave(): JSX.Element {
 
         <Button text="Cadastrar planta" onPress={handleSavePlant} />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
