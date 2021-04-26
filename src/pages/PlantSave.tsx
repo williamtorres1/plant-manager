@@ -172,6 +172,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.text,
     fontSize: 17,
     textAlign: 'justify',
+    color: colors.blue,
   },
   alertLabel: {
     textAlign: 'center',

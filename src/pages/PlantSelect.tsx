@@ -30,7 +30,7 @@ export function PlantSelect(): JSX.Element {
 
   const [environments, setEnvironments] = useState<EnvironmentProps[]>();
   const [environmentSelected, setEnvironmentSelected] = useState('all');
-  const [plants, setPlants] = useState<PlantPropsrops[]>([]);
+  const [plants, setPlants] = useState<PlantProps[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -97,9 +97,7 @@ export function PlantSelect(): JSX.Element {
     navigation.navigate('PlantSave', { plant });
   }
 
-  if (loading) {
-    return <Load />;
-  }
+  if (loading) return <Load />;
 
   return (
     <View style={styles.container}>

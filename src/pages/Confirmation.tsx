@@ -1,10 +1,11 @@
-import { useNavigation, useRoute } from '@react-navigation/core';
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import colors from '../../styles/colors';
-import fonts from '../../styles/fonts';
+import { useNavigation, useRoute } from '@react-navigation/core';
 
 import { Button } from '../components/Button';
+
+import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
 
 interface Params {
   title: string;
@@ -76,7 +77,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.text,
     textAlign: 'center',
     fontSize: 17,
-    // paddingHorizontal: 10,
     color: colors.heading,
   },
   emoji: {

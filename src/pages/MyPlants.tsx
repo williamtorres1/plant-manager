@@ -63,9 +63,7 @@ export function MyPlants(): JSX.Element {
     ]);
   }
 
-  if (loading) {
-    return <Load />;
-  }
+  if (loading) return <Load />;
 
   return (
     <View style={styles.container}>
@@ -81,7 +79,7 @@ export function MyPlants(): JSX.Element {
 
         <FlatList
           showsVerticalScrollIndicator={false}
-          // contentContainerStyle={{ flex: 1 }}
+          contentContainerStyle={{ flex: 1 }}
           data={myPlants}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (

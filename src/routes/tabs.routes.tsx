@@ -10,7 +10,7 @@ import colors from '../../styles/colors';
 
 const AppTab = createBottomTabNavigator();
 
-const AuthRoutes = () => {
+const AuthRoutes = (): JSX.Element => {
   return (
     <AppTab.Navigator
       tabBarOptions={{

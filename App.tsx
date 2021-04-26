@@ -24,13 +24,6 @@ export default function App(): JSX.Element {
       },
     );
     return () => subscriptions.remove();
-
-    // async function notifications() {
-    //   await Notifications.cancelAllScheduledNotificationsAsync();
-    //   const data = await Notifications.getAllScheduledNotificationsAsync();
-    //   console.log('Notificações agendadas', data);
-    // }
-    // notifications();
   }, []);
 
   if (!fontsLoaded) {
