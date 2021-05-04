@@ -79,7 +79,6 @@ export function MyPlants(): JSX.Element {
 
         <FlatList
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ flex: 1 }}
           data={myPlants}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
