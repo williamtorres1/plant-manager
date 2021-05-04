@@ -40,7 +40,7 @@ $ yarn
 $ sudo yarn global add json-server
 
 # Run fake api with json-server
-json-server src/services/server.json --host 10.0.0.3  --port 3333 --delay 700
+$ json-server src/services/server.json --host 10.0.0.3  --port 3333 --delay 700
 
 # Run
 $ yarn start
